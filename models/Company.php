@@ -48,16 +48,29 @@ class Company extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'about' => 'About',
-            'person_id' => 'Person ID',
+            'person_id' => 'Person Name',
+
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
+
     public function getPerson()
     {
         return $this->hasOne(Person::className(), ['id' => 'person_id']);
+
+    }
+
+
+    public function getAddress_p()
+    {
+        $add = $this->getPerson()->one()->getAddress()->one();
+        return $add;
+    }
+    public function getFullAddress_p() {
+        return $this->getAddress_p()->street . ' ' . $this->getAddress_p()->city . ' ' . $this->getAddress_p()->country;
     }
 
     /**

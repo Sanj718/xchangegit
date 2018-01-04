@@ -41,9 +41,7 @@ class Address extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'street' => 'Street',
-            'city' => 'City',
-            'country' => 'Country',
+            'fullAddress' => Yii::t('app', 'Full Address')
         ];
     }
 
@@ -54,4 +52,6 @@ class Address extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Person::className(), ['address_id' => 'id']);
     }
+
+
 }

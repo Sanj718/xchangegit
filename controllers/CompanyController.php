@@ -40,7 +40,7 @@ class CompanyController extends Controller
 
         return $this->render('index', [
             'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'dataProvider' => $dataProvider
         ]);
     }
 
@@ -52,8 +52,11 @@ class CompanyController extends Controller
      */
     public function actionView($id)
     {
+        $company = $this->findModel($id);
+        //$address = $company->getPerson()->one()->getAddress()->one();
+        //var_dump($address);
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $company,
         ]);
     }
 
