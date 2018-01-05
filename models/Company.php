@@ -63,7 +63,8 @@ class Company extends \yii\db\ActiveRecord
 
     }
 
-    public function getPerson_pp(){
+    public function getPerson_pp()
+    {
         return $this->getPerson()->one();
     }
 
@@ -73,7 +74,8 @@ class Company extends \yii\db\ActiveRecord
         return $add;
     }
 
-    public function getFullAddress_p() {
+    public function getFullAddress_p()
+    {
         return $this->getAddress_p()->street . ' ' . $this->getAddress_p()->city . ' ' . $this->getAddress_p()->country;
     }
 

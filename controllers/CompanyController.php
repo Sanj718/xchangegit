@@ -8,12 +8,16 @@ use app\models\CompanyClass;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use yii\helpers\ArrayHelper;
+use app\models\Person;
 /**
  * CompanyController implements the CRUD actions for Company model.
  */
 class CompanyController extends Controller
 {
+
+
+
     /**
      * @inheritdoc
      */
@@ -52,6 +56,7 @@ class CompanyController extends Controller
      */
     public function actionView($id)
     {
+
         $company = $this->findModel($id);
         //$address = $company->getPerson()->one()->getAddress()->one();
         //var_dump($address);
@@ -85,8 +90,13 @@ class CompanyController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
+
+
     public function actionUpdate($id)
     {
+        $people=Person::find()->all();
+        $listData=ArrayHelper::map($people,'id', 'name');
+
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -95,6 +105,7 @@ class CompanyController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'listData' => $listData,
         ]);
     }
 
