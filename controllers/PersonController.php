@@ -8,7 +8,9 @@ use app\models\PersonClass;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use yii\helpers\ArrayHelper;
+use app\models\Company;
+use app\models\Address;
 /**
  * PersonController implements the CRUD actions for Person model.
  */
@@ -84,6 +86,12 @@ class PersonController extends Controller
      */
     public function actionUpdate($id)
     {
+        $company=Company::find()->all();
+        $listCompany=ArrayHelper::map($company,'id', 'name');
+
+        $address=Address::find()->all();
+        $listAddress=ArrayHelper::map($address,'id', 'street', 'city');
+
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -92,6 +100,8 @@ class PersonController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'listCompany' => $listCompany,
+            'listAddress' => $listAddress,
         ]);
     }
 

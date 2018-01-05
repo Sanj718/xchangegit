@@ -33,8 +33,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'surname',
             'email:email',
             'phone',
-            'company_id',
-            'address_id',
+            [
+                'label'=>'Person Name',
+                'value'=>$model->company->name,
+            ],
+            [
+                'label'=>'Person Address',
+                'value'=>$model->getFullAddress_p(),
+            ],
         ],
     ]) ?>
 

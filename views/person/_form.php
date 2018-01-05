@@ -20,9 +20,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'company_id')->textInput() ?>
+    <?php
+    echo $form->field($model, 'company_id')->dropDownList($listCompany, ['prompt'=>'Select...']);
+    ?>
 
-    <?= $form->field($model, 'address_id')->textInput() ?>
+    <?php
+    echo $form->field($model, 'address_id')->dropDownList( $listAddress, ['prompt'=>'Select...']);
+    ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
