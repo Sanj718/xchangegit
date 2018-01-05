@@ -16,7 +16,9 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'about')->textarea(['rows' => 6]) ?>
 
     <?php
-        echo $form->field($model, 'person_id')->dropDownList($listData, ['prompt'=>'Select...']);
+        if ($listData){
+            echo $form->field($model, 'person_id')->dropDownList($listData, ['prompt'=>'Select...']);
+        }
     ?>
 
     <div class="form-group">

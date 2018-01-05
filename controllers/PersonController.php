@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use app\models\Company;
 use app\models\Address;
+
 /**
  * PersonController implements the CRUD actions for Person model.
  */
@@ -66,6 +67,12 @@ class PersonController extends Controller
      */
     public function actionCreate()
     {
+        $company = Company::find()->all();
+        $listCompany = ArrayHelper::map($company, 'id', 'name');
+
+        $address = Address::find()->all();
+        $listAddress = ArrayHelper::map($address, 'id', 'street', 'city');
+
         $model = new Person();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -74,6 +81,8 @@ class PersonController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'listCompany' => $listCompany,
+            'listAddress' => $listAddress,
         ]);
     }
 
@@ -86,11 +95,11 @@ class PersonController extends Controller
      */
     public function actionUpdate($id)
     {
-        $company=Company::find()->all();
-        $listCompany=ArrayHelper::map($company,'id', 'name');
+        $company = Company::find()->all();
+        $listCompany = ArrayHelper::map($company, 'id', 'name');
 
-        $address=Address::find()->all();
-        $listAddress=ArrayHelper::map($address,'id', 'street', 'city');
+        $address = Address::find()->all();
+        $listAddress = ArrayHelper::map($address, 'id', 'street', 'city');
 
         $model = $this->findModel($id);
 
