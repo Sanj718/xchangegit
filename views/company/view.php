@@ -26,12 +26,20 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <?= DetailView::widget([
+
         'model' => $model,
         'attributes' => [
             'id',
             'name',
             'about:ntext',
-            'person_id',
+            [
+                    'label'=>'Person Name',
+                    'value'=>$model->person->name,
+            ],
+            [
+                'label'=>'Person Address',
+                'value'=>$model->getFullAddress_p(),
+            ],
         ],
     ]) ?>
 

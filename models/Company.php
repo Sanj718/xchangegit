@@ -63,12 +63,16 @@ class Company extends \yii\db\ActiveRecord
 
     }
 
+    public function getPerson_pp(){
+        return $this->getPerson()->one();
+    }
 
     public function getAddress_p()
     {
         $add = $this->getPerson()->one()->getAddress()->one();
         return $add;
     }
+
     public function getFullAddress_p() {
         return $this->getAddress_p()->street . ' ' . $this->getAddress_p()->city . ' ' . $this->getAddress_p()->country;
     }
