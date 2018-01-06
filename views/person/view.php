@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'phone',
             [
                 'label'=>'Person Name',
-                'value'=>$model->company->name,
+                'value'=>$model->company ? $model->company->name : null,
             ],
             [
                 'label'=>'Person Address',

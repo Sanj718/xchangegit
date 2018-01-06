@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'about:ntext',
             [
                     'label'=>'Person Name',
-                    'value'=>$model->person->name,
+                    'value'=>$model->person ? $model->person->name : null,
             ],
             [
                 'label'=>'Person Address',

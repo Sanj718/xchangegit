@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Company */
 /* @var $form yii\widgets\ActiveForm */
@@ -16,9 +17,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'about')->textarea(['rows' => 6]) ?>
 
     <?php
-        if ($listData){
-            echo $form->field($model, 'person_id')->dropDownList($listData, ['prompt'=>'Select...']);
-        }
+    echo $form->field($model, 'person_id')->dropDownList($listData, ['prompt' => 'Select...']);
     ?>
 
     <div class="form-group">

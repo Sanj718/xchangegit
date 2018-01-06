@@ -74,12 +74,15 @@ class Person extends \yii\db\ActiveRecord
      */
     public function getAddress()
     {
-        return $this->hasOne(Address::className(), ['id' => 'address_id']);
+            return $this->hasOne(Address::className(), ['id' => 'address_id']);
+
     }
 
     public function getFullAddress_p() {
         $add = $this->getAddress()->one();
-        return $add->street . ', ' . $add->city . ', ' . $add->country;
+        if ($add){
+            return $add->street . ', ' . $add->city . ', ' . $add->country;
+        }
     }
     /**
      * @return \yii\db\ActiveQuery

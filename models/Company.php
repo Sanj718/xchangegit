@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\models\Person;
 
 /**
  * This is the model class for table "company".
@@ -63,20 +64,29 @@ class Company extends \yii\db\ActiveRecord
 
     }
 
-    public function getPerson_pp()
+    public function getPerson_p()
     {
         return $this->getPerson()->one();
     }
 
     public function getAddress_p()
     {
-        $add = $this->getPerson()->one()->getAddress()->one();
-        return $add;
+        $person = $this->getPerson()->one();
+        if ($person) {
+            return $person->getAddress()->one();
+        } else {
+            return null;
+        }
     }
 
     public function getFullAddress_p()
     {
-        return $this->getAddress_p()->street . ' ' . $this->getAddress_p()->city . ' ' . $this->getAddress_p()->country;
+        if ($this->getAddress_p()){
+            return $this->getAddress_p()->street . ' ' . $this->getAddress_p()->city . ' ' . $this->getAddress_p()->country;
+        }else{
+            return null;
+        }
+
     }
 
     /**
